@@ -2,16 +2,16 @@ import {sandbox as sinonSandbox} from 'sinon';
 import config from '../../lib/core/config';
 import loggers from '../../lib/core/loggers';
 
-let sandbox, stubs;
+let sandbox;
 
 export default function createCoreStubs() {
   if (sandbox) {
-    sandbox.reset();
-    return {sandbox, stubs};
+    sandbox.restore();
+  } else {
+    sandbox = sinonSandbox.create();
   }
 
-  sandbox = sinonSandbox.create();
-  stubs = {
+  const stubs = {
     config: sandbox.stub(config),
     loggers: sandbox.stub(loggers)
   };
