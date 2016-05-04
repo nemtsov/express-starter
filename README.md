@@ -11,7 +11,7 @@ The `lib/github` service is here to serve as an example of how a service
 that has an http resource as well as non-trivial dependencies may be
 implemented and tested.
 
-Note: Minimum requirement is Node v4.2.0. Also, this may be a yeoman package in the future.
+Note: Minimum requirement is Node v6.0.0. Also, this may be a yeoman package in the future.
 
 
 ## Usage
