@@ -6,19 +6,19 @@ import createCoreStubs from '../helpers/createCoreStubs';
 proxyquire.noCallThru();
 
 describe('github', () => {
-  let unit, request;
+  let unit, axios;
 
   beforeEach(() => {
     const {stubs} = createCoreStubs();
-    request = {get: stub()};
+    axios = {get: stub()};
     unit = proxyquire('../../lib/github', {
-      'request-promise': request,
+      'axios': axios,
       '../core/config': stubs.config
     })
   });
 
   it('should get GH repo names', async () => {
-    request.get.returns(Promise.resolve([{name: 'a'}, {name: 'b'}]));
+    axios.get.returns(Promise.resolve({data: [{name: 'a'}, {name: 'b'}]}));
     const names = await unit.getRepoNames();
     names.should.eql(['a', 'b']);
   });

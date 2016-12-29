@@ -13,18 +13,18 @@
   },
   "license": "MIT",
   "dependencies": {
-    "babel-plugin-add-module-exports": "^0.1.4",
-    "babel-plugin-transform-async-to-generator": "^6.7.4",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.7.4",
-    "babel-plugin-transform-object-rest-spread": "^6.6.5",
-    "babel-register": "^6.7.2",
-    "body-parser": "^1.15.0",
-    "cors": "^2.7.1",
-    "dotenv-safe": "^2.3.1",
-    "express": "^4.13.4",
+    "axios": "^0.15.3",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-transform-async-to-generator": "^6.16.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.18.0",
+    "babel-plugin-transform-object-rest-spread": "^6.20.2",
+    "babel-register": "^6.18.0",
+    "body-parser": "^1.15.2",
+    "cors": "^2.8.1",
+    "dotenv-safe": "^3.0.0",
+    "express": "^4.14.0",
     "express-async-wrap": "^1.0.0",
-    "namespaced-console-logger": "^1.0.1",
-    "request-promise": "^3.0.0"
+    "namespaced-console-logger": "^1.0.1"
   },
   "engines": {
     "node": ">=6.0.0"
@@ -38,14 +38,15 @@
     ]
   },
   "devDependencies": {
-    "babel-cli": "^6.7.7",
-    "babel-eslint": "^6.0.4",
-    "babel-istanbul": "^0.8.0",
-    "mocha": "^2.4.5",
-    "nodemon": "^1.9.1",
-    "proxyquire": "^1.7.4",
+    "babel-cli": "^6.18.0",
+    "babel-eslint": "^7.1.1",
+    "babel-istanbul": "^0.12.1",
+    "eslint": "^3.12.2",
+    "mocha": "^3.2.0",
+    "nodemon": "^1.11.0",
+    "proxyquire": "^1.7.10",
     "require-directory": "^2.1.1",
-    "should": "^8.3.1",
-    "sinon": "^1.17.3"
+    "should": "^11.1.2",
+    "sinon": "^1.17.6"
   }
 }
