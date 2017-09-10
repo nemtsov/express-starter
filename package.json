@@ -4,9 +4,9 @@
   "version": "1.0.0",
   "description": "Express, starter project",
   "scripts": {
-    "dev": "nodemon server.js",
     "lint": "eslint lib test",
     "test": "npm run lint && npm run test:cover && npm run test:check-coverage",
+    "start": "if [[ $NODE_ENV == \"development\" ]]; then nodemon -w lib -w server.js server.js; else node server; fi",
     "test:watch": "mocha --require should --recursive --reporter min --watch",
     "test:cover": "nyc mocha --recursive",
     "test:check-coverage": "nyc check-coverage --statements 100 --functions 100 --branches 100 --lines 100"

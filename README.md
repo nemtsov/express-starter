@@ -2,6 +2,7 @@
 
 This is a starter project for the Express and Node >= 8 featuring:
 
+  - Docker
   - `async / await` everywhere
   - Designed for ease of unit-testing
   - Service-based folder structure (each folder in `/lib` is a separate service, with its own `index.js`, `datastore.js` [if necessary], and a web `resource.js`) for easier navigation
@@ -17,7 +18,7 @@ Note: Minimum requirement is Node v8.0.0
 ## Usage
 
 Development:
-`npm run dev`
+`docker-compose up`
 
 Testing:
 `npm test`
