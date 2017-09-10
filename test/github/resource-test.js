@@ -1,32 +1,31 @@
-import proxyquire from 'proxyquire';
-import {stub} from 'sinon';
-import createCoreStubs from '../helpers/createCoreStubs';
+const proxyquire = require('proxyquire');
+const { stub } = require('sinon');
+const createCoreStubs = require('../helpers/createCoreStubs');
 
 proxyquire.noCallThru();
 
-describe('github/resource', () => {
-  let unit, service, req, res;
-  beforeEach(() => {
-    service = {getRepoNames: stub()};
-    req = {method: 'GET'};
-    res = {};
-    const {stubs} = createCoreStubs();
-    unit = proxyquire('../../lib/github/resource', {
+describe('github/resource', function() {
+  beforeEach(function() {
+    this.service = { getRepoNames: stub() };
+    this.req = { method: 'GET' };
+    this.res = {};
+    const { stubs } = createCoreStubs();
+    this.unit = proxyquire('../../lib/github/resource', {
       '../core/loggers': stubs.loggers,
-      './': service
+      './': this.service,
     })
   });
 
-  it('should get GH repo names', done => {
-    service.getRepoNames.withArgs('n')
+  it('should get GH repo names', function(done) {
+    this.service.getRepoNames.withArgs('n')
       .returns(Promise.resolve(['a', 'b']));
 
-    req.url = '/n';
-    res.json = (data) => {
+    this.req.url = '/n';
+    this.res.json = (data) => {
       data.should.eql(['a', 'b']);
       done();
     };
 
-    unit(req, res, done);
+    this.unit(this.req, this.res, done);
   });
 });

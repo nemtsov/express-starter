@@ -1,21 +1,11 @@
 {
-  "parser": "babel-eslint",
+  "root": true,
+  "parserOptions": {
+     "ecmaVersion": 2017
+   },
+  "extends": "eslint:recommended",
   "env": {
     "es6": true,
-    "node": true,
-    "mocha": true
-  },
-  "rules": {
-    "indent": [2, 2],
-    "brace-style": [2, "1tbs"],
-    "comma-style": [2, "last"],
-    "curly": [2, "multi-line"],
-    "quotes": [2, "single"],
-    "camelcase": 0,
-    "no-debugger": 2,
-    "no-console": 2,
-    "no-undef": 2,
-    "no-underscore-dangle": 0,
-    "no-mixed-requires": 0
+    "node": true
   }
 }

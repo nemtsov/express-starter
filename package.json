@@ -1,52 +1,37 @@
 {
   "private": true,
-  "name": "babel-express-starter",
+  "name": "express-starter",
   "version": "1.0.0",
-  "description": "Babel, Express, starter project",
+  "description": "Express, starter project",
   "scripts": {
     "dev": "nodemon server.js",
     "lint": "eslint lib test",
-    "test": "npm run lint && npm run test-cover && npm run test-check-coverage",
-    "test-watch": "babel-node ./node_modules/.bin/_mocha --require should --recursive --reporter min --watch",
-    "test-cover": "babel-node ./node_modules/.bin/babel-istanbul cover _mocha -- --require should --recursive",
-    "test-check-coverage": "babel-istanbul check-coverage --statements 100 --functions 100 --branches 100 --lines 100"
+    "test": "npm run lint && npm run test:cover && npm run test:check-coverage",
+    "test:watch": "mocha --require should --recursive --reporter min --watch",
+    "test:cover": "nyc mocha --recursive",
+    "test:check-coverage": "nyc check-coverage --statements 100 --functions 100 --branches 100 --lines 100"
   },
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.15.3",
-    "babel-plugin-add-module-exports": "^0.2.1",
-    "babel-plugin-transform-async-to-generator": "^6.16.0",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.18.0",
-    "babel-plugin-transform-object-rest-spread": "^6.20.2",
-    "babel-register": "^6.18.0",
-    "body-parser": "^1.15.2",
-    "cors": "^2.8.1",
-    "dotenv-safe": "^4.0.0",
-    "express": "^4.14.0",
-    "express-async-wrap": "^1.0.0",
+    "axios": "^0.16.2",
+    "body-parser": "^1.18.0",
+    "cors": "^2.8.4",
+    "express": "^4.15.4",
+    "express-asyncify": "^1.0.0",
+    "morgan": "^1.8.2",
     "namespaced-console-logger": "^1.0.1"
   },
   "engines": {
-    "node": ">=6.0.0"
-  },
-  "babel": {
-    "plugins": [
-      "add-module-exports",
-      "transform-async-to-generator",
-      "transform-es2015-modules-commonjs",
-      "transform-object-rest-spread"
-    ]
+    "node": ">=8.0.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.18.0",
-    "babel-eslint": "^7.1.1",
-    "babel-istanbul": "^0.12.1",
-    "eslint": "^3.12.2",
-    "mocha": "^3.2.0",
-    "nodemon": "^1.11.0",
-    "proxyquire": "^1.7.10",
+    "eslint": "^4.6.1",
+    "mocha": "^3.5.1",
+    "nodemon": "^1.12.0",
+    "nyc": "^11.2.1",
+    "proxyquire": "^1.8.0",
     "require-directory": "^2.1.1",
-    "should": "^11.1.2",
-    "sinon": "^1.17.6"
+    "should": "^13.0.1",
+    "sinon": "^3.2.1"
   }
 }

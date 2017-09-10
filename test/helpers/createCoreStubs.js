@@ -1,10 +1,10 @@
-import {sandbox as sinonSandbox} from 'sinon';
-import config from '../../lib/core/config';
-import loggers from '../../lib/core/loggers';
+const { sandbox: sinonSandbox } = require('sinon');
+const config = require('../../lib/core/config');
+const loggers = require('../../lib/core/loggers');
 
 let sandbox;
 
-export default function createCoreStubs() {
+module.exports = function createCoreStubs() {
   if (sandbox) {
     sandbox.restore();
   } else {
@@ -21,5 +21,5 @@ export default function createCoreStubs() {
   stubs.loggers.get.returns(
     sandbox.stub({error: n, warn: n, info: n}));
 
-  return {sandbox, stubs};
-}
+  return { sandbox, stubs };
+};
