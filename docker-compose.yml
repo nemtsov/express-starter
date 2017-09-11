@@ -2,12 +2,21 @@ version: '3'
 services:
   web:
     build: .
-    ports:
-     - "4000:4000"
+    links:
+      - db
     volumes:
       - .:/app
+    ports:
+      - "4000:4000"  # our server
+      - "9229:9229"  # node-inspector
     environment:
       - PORT=4000
       - NODE_ENV=development
-      - GITHUB_API_URL=https://api.github.com
+      - DATABASE_URL=postgres://postgres@db/postgres
 
+  db:
+    image: mdillon/postgis
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"

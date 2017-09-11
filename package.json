@@ -14,12 +14,15 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.16.2",
+    "bcrypt": "^1.0.3",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.0",
     "cors": "^2.8.4",
     "express": "^4.15.4",
     "express-asyncify": "^1.0.0",
     "morgan": "^1.8.2",
-    "namespaced-console-logger": "^1.0.1"
+    "namespaced-console-logger": "^1.0.1",
+    "pg": "^7.3.0"
   },
   "engines": {
     "node": ">=8.0.0"
