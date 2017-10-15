@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint lib test",
     "test": "npm run lint && npm run test:cover && npm run test:check-coverage",
-    "start": "if [[ $NODE_ENV == \"development\" ]]; then nodemon -w lib -w server.js server.js; else node server; fi",
+    "start": "if [[ $NODE_ENV == \"development\" ]]; then nodemon -L -w lib -w server.js server.js; else node server; fi",
     "test:watch": "mocha --require should --recursive --reporter min --watch",
     "test:cover": "nyc mocha --recursive",
     "test:check-coverage": "nyc check-coverage --statements 100 --functions 100 --branches 100 --lines 100"
@@ -14,12 +14,18 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.16.2",
+    "bcrypt": "^1.0.3",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.0",
     "cors": "^2.8.4",
     "express": "^4.15.4",
     "express-asyncify": "^1.0.0",
+    "express-jwt": "^5.3.0",
+    "express-jwt-authz": "^1.0.0",
+    "jsonwebtoken": "^8.0.1",
     "morgan": "^1.8.2",
-    "namespaced-console-logger": "^1.0.1"
+    "namespaced-console-logger": "^1.0.1",
+    "pg": "^7.3.0"
   },
   "engines": {
     "node": ">=8.0.0"
