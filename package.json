@@ -7,8 +7,8 @@
     "lint": "eslint lib test",
     "test": "npm run lint && npm run test:cover && npm run test:check-coverage",
     "start": "if [[ $NODE_ENV == \"development\" ]]; then nodemon -L -w lib -w server.js server.js; else node server; fi",
-    "test:watch": "mocha --require should --recursive --reporter min --watch",
-    "test:cover": "nyc mocha --recursive",
+    "test:watch": "mocha --require should --recursive --reporter min --watch --growl",
+    "test:cover": "nyc --recursive --reporter=text --reporter=html mocha",
     "test:check-coverage": "nyc check-coverage --statements 100 --functions 100 --branches 100 --lines 100"
   },
   "license": "MIT",
@@ -16,28 +16,28 @@
     "axios": "^0.16.2",
     "bcrypt": "^1.0.3",
     "bcryptjs": "^2.4.3",
-    "body-parser": "^1.18.0",
+    "body-parser": "^1.18.2",
     "cors": "^2.8.4",
-    "express": "^4.15.4",
+    "express": "^4.16.2",
     "express-asyncify": "^1.0.0",
     "express-jwt": "^5.3.0",
     "express-jwt-authz": "^1.0.0",
-    "jsonwebtoken": "^8.0.1",
-    "morgan": "^1.8.2",
-    "namespaced-console-logger": "^1.0.1",
+    "jsonwebtoken": "^8.1.0",
+    "morgan": "^1.9.0",
+    "namespaced-console-logger": "^1.1.0",
     "pg": "^7.3.0"
   },
   "engines": {
     "node": ">=8.0.0"
   },
   "devDependencies": {
-    "eslint": "^4.6.1",
-    "mocha": "^3.5.1",
-    "nodemon": "^1.12.0",
+    "eslint": "^4.9.0",
+    "mocha": "^3.5.3",
+    "nodemon": "^1.12.1",
     "nyc": "^11.2.1",
     "proxyquire": "^1.8.0",
     "require-directory": "^2.1.1",
-    "should": "^13.0.1",
-    "sinon": "^3.2.1"
+    "should": "^13.1.2",
+    "sinon": "^3.3.0"
   }
 }
