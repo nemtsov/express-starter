@@ -4,6 +4,7 @@ This is a starter project for the Express and Node >= 8 featuring:
 
   - Docker
   - PostgreSQL
+  - JWT-based authentication
   - `async / await` everywhere
   - Designed for ease of testing with an emphasis on "few-millisecond-fast" end-to-end tests
   - Service-based folder structure (each folder in `/lib` is a separate service, with its own `index.js`, `datastore.js` [if necessary], and a web `resource.js`) for easier navigation
@@ -33,6 +34,24 @@ Re-run tests when a file changes:
 Production:
 `npm install`
 `npm start`
+
+
+## Auth
+
+Create a new user:
+```
+curl -i -XPOST 'http://localhost:4000/users' -H 'Content-type: application/json' -d '{"email": "e@e.com", "password": "pass"}'
+```
+
+Create a token for the user:
+```
+curl -i -XPOST -u 'e@e.com:pass' 'http://localhost:4000/tokens'
+```
+
+Use the token to get data:
+```
+curl -i 'http://localhost:4000/github/nodejs' -H 'Authorization: Bearer <TOKEN_FROM_PREV_STEP>'
+```
 
 
 ## License
