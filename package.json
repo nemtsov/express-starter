@@ -7,13 +7,14 @@
     "lint": "eslint lib test",
     "test": "npm run lint && npm run test:cover && npm run test:check-coverage",
     "start": "if [[ $NODE_ENV == \"development\" ]]; then nodemon -L -w lib -w server.js server.js; else node server; fi",
-    "test:watch": "env NODE_ENV=test mocha --require test/index --recursive --reporter min --watch --growl",
-    "test:cover": "env NODE_ENV=test nyc --reporter=text --reporter=html mocha --require test/index --recursive",
+    "test:single": "env NODE_ENV=test mocha --require test/index --recursive --exit",
+    "test:watch": "npm run test:single -- --watch --reporter min --growl",
+    "test:cover": "env NODE_ENV=test nyc --reporter=text --reporter=html mocha --require test/index --recursive --exit",
     "test:check-coverage": "nyc check-coverage --statements 100 --functions 100 --branches 100 --lines 100"
   },
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.16.2",
+    "axios": "^0.17.0",
     "bcrypt": "^1.0.3",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.2",
@@ -34,12 +35,12 @@
     "chai": "^4.1.2",
     "chai-http": "^3.0.0",
     "eslint": "^4.9.0",
-    "mocha": "^3.5.3",
+    "mocha": "^4.0.1",
     "nodemon": "^1.12.1",
     "nyc": "^11.2.1",
     "proxyquire": "^1.8.0",
     "require-directory": "^2.1.1",
-    "sinon": "^3.3.0",
+    "sinon": "^4.0.1",
     "sinon-chai": "^2.14.0"
   }
 }
