@@ -1,3 +1,6 @@
+/coverage
+/.secrets
 /.nyc_output
 /node_modules
 *.log
+.DS_Store

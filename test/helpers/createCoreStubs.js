@@ -1,6 +1,4 @@
 const { sandbox: sinonSandbox } = require('sinon');
-const config = require('../../lib/core/config');
-const loggers = require('../../lib/core/loggers');
 
 let sandbox;
 
@@ -11,12 +9,15 @@ module.exports = function createCoreStubs() {
     sandbox = sinonSandbox.create();
   }
 
-  const stubs = {
-    config: sandbox.stub(config),
-    loggers: sandbox.stub(loggers)
-  };
-
   function n() {}
+
+  const stubs = {
+    config: sandbox.stub({ get: n }),
+    db: {
+      pool: sandbox.stub({ connect: n, end: n, query: n, on: n }),
+    },
+    loggers: sandbox.stub({ get: n })
+  };
 
   stubs.loggers.get.returns(
     sandbox.stub({error: n, warn: n, info: n}));
