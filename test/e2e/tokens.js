@@ -1,7 +1,6 @@
-const chai = require('chai');
 const { match } = require('sinon');
 const { dbReturns, resetDbSpies } = require('../helpers/db');
-const createApp = require('../../lib/core/createApp');
+const createChaiRequest = require('../helpers/createChaiRequest');
 
 // "password" hashed w/ bcrypt saltRounds: 1
 const HASHED_PASS = '$2a$04$IFIta7yFPKTv0ZBIYLXXJObH8c1JaDDrDdI5IjzYYSCyOIOuX/5hK';
@@ -9,13 +8,13 @@ const getJwtPayload = (str) => JSON.parse(Buffer.from(str.split('.')[1], 'base64
 
 describe('e2e/tokens', function () {
   before(async function () {
-    this.req = chai.request(await createApp());
+    this.req = await createChaiRequest();
   });
 
   afterEach(resetDbSpies);
 
   it('should return a 401 if the user is not found', async function() {
-    dbReturns(null);
+    dbReturns([]);
 
     try {
       await this.req.post('/tokens');
@@ -30,7 +29,7 @@ describe('e2e/tokens', function () {
   it('should create a new token', async function() {
     const user = { id: 'u1', password: HASHED_PASS, age: 21 };
 
-    dbReturns(q => q.withArgs(match.string, ['e@e.com']), user);
+    dbReturns(q => q.withArgs(match.string, ['e@e.com']), [ user ]);
 
     const res = await this.req
       .post('/tokens')

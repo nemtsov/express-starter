@@ -1,12 +1,12 @@
 const { pool } = require('../../lib/core/db');
 
-exports.dbReturns = function (criteria, data) {
+exports.dbReturns = function (criteria, rows) {
   if (arguments.length === 1) {
-    data = criteria;
+    rows = criteria;
     criteria = q => q;
   }
   pool.query.returns(Promise.resolve({ rows: []}));
-  criteria(pool.query).returns(Promise.resolve({ rows: [ data ]}));
+  criteria(pool.query).returns(Promise.resolve({ rows }));
 };
 
 exports.resetDbSpies = function() {
