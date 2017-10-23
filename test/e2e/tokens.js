@@ -41,9 +41,24 @@ describe('e2e/tokens', function () {
     throw new Error('should have thrown a 401');
   });
 
+  it('should return a 401 if the password is wrong', async function() {
+    const dbUser = { id: 'u1', password: HASHED_PASS, age: 21 };
+    dbReturns(q => q.withArgs(match.string, ['e@e.com']), [ dbUser ]);
+
+    try {
+      await this.req
+        .post('/tokens')
+        .auth('e@e.com', 'wrong_pass');
+    } catch (err) {
+      err.response.should.have.status(401);
+      return;
+    }
+
+    throw new Error('should have thrown a 401');
+  });
+
   it('should create a new token', async function() {
     const dbUser = { id: 'u1', password: HASHED_PASS, age: 21 };
-
     dbReturns(q => q.withArgs(match.string, ['e@e.com']), [ dbUser ]);
 
     const res = await this.req
