@@ -13,11 +13,26 @@ describe('e2e/tokens', function () {
 
   afterEach(resetDbSpies);
 
-  it('should return a 401 if the user is not found', async function() {
+  it('should return a 400 if basic auth is not used', async function() {
     dbReturns([]);
 
     try {
       await this.req.post('/tokens');
+    } catch (err) {
+      err.response.should.have.status(400);
+      return;
+    }
+
+    throw new Error('should have thrown a 400');
+  });
+
+  it('should return a 401 if the user is not found', async function() {
+    dbReturns([]);
+
+    try {
+      await this.req
+        .post('/tokens')
+        .auth('e@e.com', 'password');
     } catch (err) {
       err.response.should.have.status(401);
       return;
@@ -27,16 +42,13 @@ describe('e2e/tokens', function () {
   });
 
   it('should create a new token', async function() {
-    const user = { id: 'u1', password: HASHED_PASS, age: 21 };
+    const dbUser = { id: 'u1', password: HASHED_PASS, age: 21 };
 
-    dbReturns(q => q.withArgs(match.string, ['e@e.com']), [ user ]);
+    dbReturns(q => q.withArgs(match.string, ['e@e.com']), [ dbUser ]);
 
     const res = await this.req
       .post('/tokens')
-      .send({
-        email: 'e@e.com',
-        password: 'password'
-      });
+      .auth('e@e.com', 'password');
 
     res.should.have.status(201);
     res.should.be.json;
@@ -46,7 +58,7 @@ describe('e2e/tokens', function () {
 
     payload.should.not.have.any.keys(['password']);
     payload.should.include({
-      sub: user.id,
+      sub: dbUser.id,
       age: 21,
     });
   });
