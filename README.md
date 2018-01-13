@@ -1,4 +1,4 @@
-# Express Starter
+# Express Starter ![ci](https://travis-ci.org/nemtsov/express-starter.svg?branch=master)
 
 This is a starter project for the Express and Node >= 8 featuring:
 
