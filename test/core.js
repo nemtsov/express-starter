@@ -5,6 +5,10 @@ const loggers = require('../lib/core/loggers');
 const init = require('../lib/core/init');
 const errorHandler = require('../lib/core/errorHandler');
 const createHttpStubs = require('./helpers/createHttpStubs');
+const { resetDbSpies } = require('./helpers/db');
+
+// globally reset the db spies
+afterEach(resetDbSpies);
 
 proxyquire.noCallThru();
 

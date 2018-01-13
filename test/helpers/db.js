@@ -9,6 +9,16 @@ exports.dbReturns = function (criteria, rows) {
   criteria(pool.query).returns(Promise.resolve({ rows }));
 };
 
+exports.dbRejects = function (errorCode) {
+  const error = new Error('dbrejects error');
+  error.code = errorCode;
+  error.schema = 'sch';
+  error.table = 'tbl';
+  const promise = Promise.reject(error);
+  promise.catch(() => {});
+  pool.query.returns(promise);
+};
+
 exports.resetDbSpies = function() {
-  pool.query.reset();
+  pool.query.reset && pool.query.reset();
 };
