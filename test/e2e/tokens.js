@@ -1,5 +1,5 @@
 const { match } = require('sinon');
-const { dbReturns, resetDbSpies } = require('../helpers/db');
+const { dbReturns } = require('../helpers/db');
 const createChaiRequest = require('../helpers/createChaiRequest');
 
 // "password" hashed w/ bcrypt saltRounds: 1
@@ -10,8 +10,6 @@ describe('e2e/tokens', function () {
   before(async function () {
     this.req = await createChaiRequest();
   });
-
-  afterEach(resetDbSpies);
 
   it('should return a 400 if basic auth is not used', async function() {
     dbReturns([]);
