@@ -56,7 +56,7 @@ services:
         -----END RSA PRIVATE KEY-----
 
   db:
-    image: mdillon/postgis
+    image: mdillon/postgis:10
     volumes:
       - ./db:/docker-entrypoint-initdb.d
     ports:
