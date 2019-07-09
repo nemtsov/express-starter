@@ -14,7 +14,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.17.0",
+    "axios": "^0.18.1",
     "basic-auth": "^2.0.0",
     "bcrypt": "^2.0.1",
     "bcryptjs": "^2.4.3",
